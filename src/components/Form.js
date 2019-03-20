@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Form extends Component {
 
   state = {
-    name: 'Name',
+    name: '',
     calories: 0,
     image: 'https://loremflickr.com/640/360',
     isFormVisible: false,

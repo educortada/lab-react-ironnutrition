@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { Component } from 'react';
 
-class FoodBox extends React.Component {
+class FoodBox extends Component {
   render() {
     
     const {food} = this.props
