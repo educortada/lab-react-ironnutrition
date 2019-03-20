@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { Component } from 'react';
 
-class Form extends React.Component {
+class Form extends Component {
 
   state = {
     name: 'Name',
     calories: 0,
     image: 'https://loremflickr.com/640/360',
+    isFormVisible: false,
   }
 
   handleInput = (event) => {
@@ -17,35 +18,52 @@ class Form extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
     this.props.addFood(this.state)
+    this.handleForm()
+  }
+
+  // Toggle
+  handleForm = () => {
+    this.setState(
+      { isFormVisible: !this.state.isFormVisible }
+    )
   }
 
   render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <div className="field">
-          <label className="label">Name</label>
-          <div className="control">
-            <input onChange={this.handleInput} className="input" type="text" placeholder="Name" name="name" value={this.state.name} />
-          </div>
-        </div>
+    let isFormVisible = this.state.isFormVisible
 
-        <div className="field">
-          <label className="label">Number of calories</label>
-          <div className="control">
-            <input onChange={this.handleInput} className="input" type="number" placeholder="Number of calories" name="calories" value={this.state.calories} />
+    if (isFormVisible) {
+      return (
+        <form onSubmit={this.handleSubmit}>
+          <div className="field">
+            <label className="label">Name</label>
+            <div className="control">
+              <input onChange={this.handleInput} className="input" type="text" placeholder="Name" name="name" value={this.state.name} />
+            </div>
           </div>
-        </div>
 
-        <div className="field">
-          <label className="label">Image</label>
-          <div className="control">
-            <input onChange={this.handleInput} className="input" type="text" placeholder="Image" name="image" value={this.state.image} />
+          <div className="field">
+            <label className="label">Number of calories</label>
+            <div className="control">
+              <input onChange={this.handleInput} className="input" type="number" placeholder="Number of calories" name="calories" value={this.state.calories} />
+            </div>
           </div>
-        </div>
 
-        <button className="button is-primary" type="submit">Add food</button>
-      </form>
-    )
+          <div className="field">
+            <label className="label">Image</label>
+            <div className="control">
+              <input onChange={this.handleInput} className="input" type="text" placeholder="Image" name="image" value={this.state.image} />
+            </div>
+          </div>
+          <button className="button is-primary" type="submit">Add food</button>
+        </form>
+      )
+    } else {
+      return (
+        <div>
+          <button className="button is-primary" onClick={this.handleForm}>Show Form</button>
+        </div>
+      )
+    }
   }
 }
 
