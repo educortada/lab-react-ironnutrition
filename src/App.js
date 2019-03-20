@@ -11,6 +11,7 @@ import foods from './data/foods.json'
 import FoodBox from './components/FoodBox'
 import Form from './components/Form'
 import Search from './components/Search'
+import TodayFoodList from './components/TodayFoodList'
 
 class App extends Component {
   // foodListInit: Array con toda la comida del JSON + la comida que se añade.
@@ -59,8 +60,14 @@ class App extends Component {
           <section>
             <Form addFood={this.handleAddFood} />
           </section>
-          <section>
-            {this.renderList()}
+          <section class="columns">
+            <article className="column is-three-quarters">
+              {this.renderList()}
+            </article>
+            <article className="column">
+              <h2 class="title is-4">Today's foods</h2>
+              <TodayFoodList />
+            </article>
           </section>
         </main>
       </div>

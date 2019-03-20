@@ -1,9 +1,23 @@
 import React, { Component } from 'react';
 
 class FoodBox extends Component {
+  
+  state = {
+    amount: 0,
+  }
+
+  handleInput = (event) => {
+    this.setState(
+      { [event.target.name]: event.target.value }
+    )
+  }
+
+  handleClick = (event) => {
+    console.log(event.target);
+  }
+
   render() {
-    
-    const {food} = this.props
+    const { food } = this.props
 
     return (
       <div className="box">
@@ -27,11 +41,16 @@ class FoodBox extends Component {
                 <input
                   className="input"
                   type="number"
-                  value="1"
+                  value={this.state.amount}
+                  onChange={this.handleInput}
+                  name="amount"
                 />
               </div>
               <div className="control">
-                <button className="button is-info">
+                <button 
+                  className="button is-info"
+                  onClick={this.handleClick}
+                >
                   +
                 </button>
               </div>
