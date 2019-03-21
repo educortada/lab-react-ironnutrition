@@ -13,7 +13,10 @@ class FoodBox extends Component {
   }
 
   handleClick = (food) => {
+    food.quantity = 1
     this.props.todayFood(food)
+    const totalCaloriesMultipliedByQuantity = food.calories * food.quantity
+    this.props.totalCalories(totalCaloriesMultipliedByQuantity)
   }
 
   render() {

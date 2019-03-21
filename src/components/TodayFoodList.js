@@ -5,16 +5,20 @@ class TodayFoodList extends Component {
   renderList = () => {
     return (
       this.props.todayFoods.map((food, index) => {
-        return <li key={`id-${index}`}>{food.name}</li>
+        return <li key={`id-${index}`}>{food.quantity} {food.name} = {food.quantity * food.calories} cal</li>
       })
     )
   }
 
   render() {
     return (
-      <ul>
-        {this.renderList()}
-      </ul>
+      <div>
+        <ul>
+          {this.renderList()}
+        </ul>
+        <p>Total: {this.props.totalCalories}</p>
+        {console.log(this.props.todayFoods)}
+      </div>
     )
   }
 }

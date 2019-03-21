@@ -19,14 +19,21 @@ class App extends Component {
   state = {
     foodListInit: [...foods],
     foodList: [...foods],
-    todayFoodList: []
+    todayFoodList: [],
+    totalCalories: 0,
   }
 
   renderList = () => {
     return (
       this.state.foodList.map((food, index) => {
-        return <FoodBox key={`id-${index}`} food={food} todayFood={this.handleTodaysFood} />
+        return <FoodBox key={`id-${index}`} food={food} todayFood={this.handleTodaysFood} totalCalories={this.handleTotalCalories}/>
       })
+    )
+  }
+
+  handleTotalCalories = (calories) => {
+    this.setState(
+      { totalCalories: this.state.totalCalories + calories }
     )
   }
 
@@ -51,8 +58,6 @@ class App extends Component {
     )
   }
 
-
-
   render() {
     return (
       <div>
@@ -75,7 +80,7 @@ class App extends Component {
             </article>
             <article className="column">
               <h2 className="title is-4">Today's foods</h2>
-              <TodayFoodList todayFoods={this.state.todayFoodList} />
+              <TodayFoodList todayFoods={this.state.todayFoodList} totalCalories={this.state.totalCalories}/>
             </article>
           </section>
         </main>

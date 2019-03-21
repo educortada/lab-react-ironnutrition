@@ -6,6 +6,7 @@ class Form extends Component {
     name: '',
     calories: 0,
     image: 'https://loremflickr.com/640/360',
+    quantity: 0,
     isFormVisible: false,
   }
 
