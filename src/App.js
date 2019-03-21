@@ -18,15 +18,22 @@ class App extends Component {
   // foodList: Array que se actualiza con el filtro.
   state = {
     foodListInit: [...foods],
-    foodList: [...foods]
+    foodList: [...foods],
+    todayFoodList: []
   }
 
   renderList = () => {
     return (
       this.state.foodList.map((food, index) => {
-        return <FoodBox key={`id-${index}`} food={food} />
+        return <FoodBox key={`id-${index}`} food={food} todayFood={this.handleTodaysFood} />
       })
     )
+  }
+
+  handleTodaysFood = (newFood) => {
+    this.setState({
+      todayFoodList: [...this.state.todayFoodList, newFood]
+    })
   }
 
   handleAddFood = (newFood) => {
@@ -44,6 +51,8 @@ class App extends Component {
     )
   }
 
+
+
   render() {
     return (
       <div>
@@ -60,13 +69,13 @@ class App extends Component {
           <section>
             <Form addFood={this.handleAddFood} />
           </section>
-          <section class="columns">
+          <section className="columns">
             <article className="column is-three-quarters">
               {this.renderList()}
             </article>
             <article className="column">
-              <h2 class="title is-4">Today's foods</h2>
-              <TodayFoodList />
+              <h2 className="title is-4">Today's foods</h2>
+              <TodayFoodList todayFoods={this.state.todayFoodList} />
             </article>
           </section>
         </main>

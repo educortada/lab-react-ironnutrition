@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 class FoodBox extends Component {
-  
+
   state = {
     amount: 0,
   }
@@ -12,13 +12,12 @@ class FoodBox extends Component {
     )
   }
 
-  handleClick = (event) => {
-    console.log(event.target);
+  handleClick = (food) => {
+    this.props.todayFood(food)
   }
 
   render() {
     const { food } = this.props
-
     return (
       <div className="box">
         <article className="media">
@@ -47,9 +46,9 @@ class FoodBox extends Component {
                 />
               </div>
               <div className="control">
-                <button 
+                <button
                   className="button is-info"
-                  onClick={this.handleClick}
+                  onClick={ () => { this.handleClick(food) } }
                 >
                   +
                 </button>
